@@ -1,4 +1,4 @@
-# mess2_logger
+# ros2_logger_csv
 
 ROS 2 package for logging messages directly to `.csv` files; not recommended for binary message types with large arrays (i.e., images, point clouds) or significant volumes of data as these may result in poor performance.
 
@@ -10,7 +10,7 @@ ROS 2 package for logging messages directly to `.csv` files; not recommended for
 This package contains a general purpose data logger for ROS 2, designed to be accessible to users with limited experience in robotics software who may prefer human-readable data over ROS-specific serialization (i.e., rosbag2).
 
 > [!WARNING]
-> This package is not intended for high-bandwidth binary data (i.e., images, point clouds) as these message types may cause poor performance. Nodes in this package are written in Pythonfor ease of use and to enable dynamic topic subscription without the use of msg introspection, while backend tasks (i.e., msg parsing, log file i/o) utilize C++ functions via `pybind11` bindings.
+> This package is not intended for high-bandwidth binary data (i.e., images, point clouds) as these message types may cause poor performance. Nodes in this package are written in Python for ease of use and to enable dynamic topic subscription without the use of msg introspection, while backend tasks (i.e., msg parsing, log file i/o) utilize C++ functions via `pybind11` bindings.
 
 ## License
 
