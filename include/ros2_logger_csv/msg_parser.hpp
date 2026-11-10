@@ -1,5 +1,5 @@
-#ifndef MESS2_LOGGER_CPP_MSG_PARSER_HPP
-#define MESS2_LOGGER_CPP_MSG_PARSER_HPP
+#ifndef ros2_logger_csv_CPP_MSG_PARSER_HPP
+#define ros2_logger_csv_CPP_MSG_PARSER_HPP
 
 #include <filesystem>
 #include <fstream>
@@ -56,4 +56,4 @@ std::vector<std::string> parse_msg(
 );
 
 
-#endif // MESS2_LOGGER_CPP_MSG_PARSER_HPP
+#endif // ros2_logger_csv_CPP_MSG_PARSER_HPP

@@ -14,7 +14,7 @@ This package contains a general purpose data logger for ROS 2, designed to be ac
 
 ## License
 
-This package is released under an [MIT License](https://github.com/marinarasauced/mess2_logger/blob/main/LICENSE).
+This package is released under an [MIT License](https://github.com/marinarasauced/ros2_logger_csv/blob/main/LICENSE).
 
 Authors: [Marina Nelson](https://github.com/marinarasauced) <br/>
 Contributors: [Vik095](https://github.com/Vik095) ([ros msg parser in py](https://github.com/Vik095/Ros_msgs_parser)) <br/>
@@ -38,7 +38,7 @@ Clone the repository into the `src` directory of your ROS 2 workspace:
 
 ```zsh
 cd ~/your_ws/src
-git clone https://github.com/marinarasauced/mess2_logger
+git clone https://github.com/marinarasauced/ros2_logger_csv
 ```
 
 Update ROS 2 dependencies and compile the package:
@@ -46,7 +46,7 @@ Update ROS 2 dependencies and compile the package:
 ```zsh
 cd ~/your_ws
 rosdep install --from-paths src --ignore-src -r -y
-colcon build --packages-select mess2_logger
+colcon build --packages-select ros2_logger_csv
 ```
 
 Source the setup script:
@@ -59,15 +59,15 @@ source ~/your_wsinstall/setup.zsh
 
 ### Nodes
 
-The `mess2_logger` currently includes Python nodes that dynamically subscribe to ROS 2 topics and logs the corresponding messages to `.csv` files. A single executable starts nodes of two types: an initializer and logger instances. The initializer node is responsible for declaring parameters for the executable and ensuring that the write path for the logs exists. The logger node instances are responsible for logging their respective topics to the `.csv` files at the write path.
+The `ros2_logger_csv` currently includes Python nodes that dynamically subscribe to ROS 2 topics and logs the corresponding messages to `.csv` files. A single executable starts nodes of two types: an initializer and logger instances. The initializer node is responsible for declaring parameters for the executable and ensuring that the write path for the logs exists. The logger node instances are responsible for logging their respective topics to the `.csv` files at the write path.
 
 To start the nodes, execute the following command in a terminal:
 
 ```zsh
-ros2 run mess2_logger main.py
+ros2 run ros2_logger_csv main.py
 ```
 
-Nodes follow a standard naming pattern. For a logger node instance for a topic `'/ns/topic123'`, the name of the node is `'mess2_logger_ns_topic123'`. Logger node instances are spawned after the `'mess2_logger_initializer'` node, which is destroyed after all logger node instances have started.
+Nodes follow a standard naming pattern. For a logger node instance for a topic `'/ns/topic123'`, the name of the node is `'ros2_logger_csv_ns_topic123'`. Logger node instances are spawned after the `'ros2_logger_csv_initializer'` node, which is destroyed after all logger node instances have started.
 
 ### Launch Files
 
@@ -76,19 +76,19 @@ Three default launch options are available. All launch.py files include the foll
 The first launch option `logger.launch.py` is considered the default launch.py file and utilizes the default launch arguments.
 
 ```zsh
-ros2 launch mess2_logger logger.launch.py namespace:='mess2' log_dir_path:='~/mess2/logs' topic_names:='topic1, topic2' period:=5.0
+ros2 launch ros2_logger_csv logger.launch.py namespace:='mess2' log_dir_path:='~/mess2/logs' topic_names:='topic1, topic2' period:=5.0
 ```
 
 The second launch option `experiment.launch.py` auto generates a subdirectory in `log_dir_path` of the form `XXXX_YYYY-MM-DD_HH:MM:SS` where `XXXX` is the trial number (i.e., 0001, 0002, etc.) and the remainder is descriptive of the time of the start of the trial.
 
 ```zsh
-ros2 launch mess2_logger experiment.launch.py namespace:='mess2' log_dir_path:='~/mess2/logs' topic_names:='topic1, topic2' period:=5.0
+ros2 launch ros2_logger_csv experiment.launch.py namespace:='mess2' log_dir_path:='~/mess2/logs' topic_names:='topic1, topic2' period:=5.0
 ```
 
 The third launch option `experiments.launch.py` adds a launch argument `trial_dir` such that the log_dir_path parameter is the joined path of the `log_dir_path` and `trial_dir` launch arguments.
 
 ```zsh
-ros2 launch mess2_logger experiments.launch.py namespace:='mess2' log_dir_path:='~/mess2/logs' trial_dir:='0000' topic_names:='topic1, topic2' period:=5.0
+ros2 launch ros2_logger_csv experiments.launch.py namespace:='mess2' log_dir_path:='~/mess2/logs' trial_dir:='0000' topic_names:='topic1, topic2' period:=5.0
 ```
 
 ### Log Files
@@ -104,7 +104,7 @@ test_topic.csv
 
 ## pybind11 Interface
 
-The `mess2_logger` package integrates C++ backend using `pybind11`. The following are examples of how to use the exposed functions and classes.
+The `ros2_logger_csv` package integrates C++ backend using `pybind11`. The following are examples of how to use the exposed functions and classes.
 
 ### `parse_msg(prefix, msg_type)`
 
@@ -118,7 +118,7 @@ The `mess2_logger` package integrates C++ backend using `pybind11`. The followin
 Example:
 
 ```py
-from mess2_logger.msg_parser import parse_msg
+from ros2_logger_csv.msg_parser import parse_msg
 parsed_msg: list[str] = parse_msg(prefix="msg", msg_type="std_msgs/msg/Header")
 ```
 
@@ -139,7 +139,7 @@ parsed_msg: list[str] = parse_msg(prefix="msg", msg_type="std_msgs/msg/Header")
 Example:
 
 ```py
-from mess2_logger.msg_logger import Logger
+from ros2_logger_csv.msg_logger import Logger
 logger: Logger = Logger(log_file_path="/home/marinarasauced/mess2/logs/0000/test_topic.csv", overwrite=True)
 
 logger.log(["msg.stamp.sec", "msg.stamp.nanosec", "msg.frame_id"])

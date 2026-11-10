@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.8)
-project(mess2_logger)
+project(ros2_logger_csv)
 
 cmake_policy(SET CMP0115 NEW)
 

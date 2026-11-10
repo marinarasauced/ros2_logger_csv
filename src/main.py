@@ -3,8 +3,8 @@
 import rclpy
 from rclpy.executors import MultiThreadedExecutor
 
-from mess2_logger.logger_init import LoggerInitializer
-from mess2_logger.logger_node import LoggerNode
+from ros2_logger_csv.logger_init import LoggerInitializer
+from ros2_logger_csv.logger_node import LoggerNode
 
 
 def main(args=None):
@@ -16,7 +16,7 @@ def main(args=None):
     container: list[LoggerNode] = []
     for topic_name in initializer.topic_names:
         clean_name = topic_name.strip("/").replace("/", "_")
-        node_name = f"mess2_logger_{clean_name}"
+        node_name = f"ros2_logger_csv_{clean_name}"
         container.append(LoggerNode(
             log_dir_path=initializer.log_dir_path, 
             node_name=node_name,

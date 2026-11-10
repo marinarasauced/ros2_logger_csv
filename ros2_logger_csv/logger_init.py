@@ -10,7 +10,7 @@ class LoggerInitializer(Node):
     def __init__(self):
         """
         """
-        super().__init__("mess2_logger_initializer")
+        super().__init__("ros2_logger_csv_initializer")
 
         self.declare_parameter("log_dir_path", "~/Projets/mess2/logs")
         self.declare_parameter("topic_names", ["/ns/test1", "/ns/test2"])

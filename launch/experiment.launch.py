@@ -4,7 +4,7 @@ from launch.actions import DeclareLaunchArgument, OpaqueFunction
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
-from mess2_logger.trial import get_trial_dir_path
+from ros2_logger_csv.trial import get_trial_dir_path
 
 
 launch_args = [
@@ -87,7 +87,7 @@ def launch_setup(context) -> list[Action]:
     trial_dir_path = get_trial_dir_path(log_dir_path=LaunchConfiguration('log_dir_path').perform(context).strip())
 
     node = Node(
-        package='mess2_logger',
+        package='ros2_logger_csv',
         executable='main.py',
         namespace=LaunchConfiguration('namespace'),
         parameters=[
@@ -101,7 +101,7 @@ def launch_setup(context) -> list[Action]:
 
 def generate_launch_description() -> LaunchDescription:
     """
-    Generates the launch description for the mess2_logger initializer node with parameters.
+    Generates the launch description for the ros2_logger_csv initializer node with parameters.
     """
     opfunc = OpaqueFunction(function=launch_setup)
     ld = LaunchDescription(launch_args)

@@ -1,5 +1,5 @@
-#ifndef MESS2_LOGGER_CPP_MSG_LOGGER_HPP
-#define MESS2_LOGGER_CPP_MSG_LOGGER_HPP
+#ifndef ros2_logger_csv_CPP_MSG_LOGGER_HPP
+#define ros2_logger_csv_CPP_MSG_LOGGER_HPP
 
 #include <fstream>
 #include <sstream>
@@ -29,4 +29,4 @@ private:
 };
 
 
-#endif // MESS2_LOGGER_CPP_MSG_LOGGER_HPP
+#endif // ros2_logger_csv_CPP_MSG_LOGGER_HPP

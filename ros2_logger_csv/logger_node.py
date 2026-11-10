@@ -2,8 +2,8 @@
 
 from os import path
 
-from mess2_logger.msg_logger import Logger
-from mess2_logger.msg_parser import parse_msg
+from ros2_logger_csv.msg_logger import Logger
+from ros2_logger_csv.msg_parser import parse_msg
 from rclpy.node import Node
 from ros2topic.api import get_msg_class
 
